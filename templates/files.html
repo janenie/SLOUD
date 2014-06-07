@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block context %}
+<div class="part">
+  <h2>{{ov.description|default('(新文件)', true)}}</h2>
+  <br>
+  <p>本页面链接： <a class="thisurl" href="{{thisurl}}">{{thisurl}}</a></p>
+  <br>
+    文件：
+  <ul>
+    {% for f in fs %}
+    <li><a href="{{ url_for('download_file', ed1=f.etime.day,
+                 tf=f.savename) }}">
+        {{ f.filename }}</a>
+      <span class="seq">|</span>
+      <span class="text-muted">上传于 : {{f.utime}}</span>
+      <span class="seq">|</span>
+      <span class="text-muted">下载数 : {{f.download}}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if session.userid == ov.owner %}
+  <br>
+  <div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+      <button class="btn btn-default controller" data-short="{{ov.short}}"
+              data-cls="ResDeleter" data-action="{{url_for('ajax_del')}}">
+        删除</button>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <form enctype="multipart/form-data" method="POST"
+          class="controller" data-cls="UpdateFileUploader"
+          action="{{url_for('ajax_update')}}">
+      <input type="hidden" name="short" value="{{ ov.short }}">
+      <div class="filechooser filechooser-ms">
+        <span class="glyphicon glyphicon-cloud-upload filechooser-bg"></span>
+        <br>
+        <span class="filename">上传一个新的版本</span>
+        <input type="file" name="file">
+      </div>
+      <input class="btn btn-primary btn-block" type="submit" value="上传！">
+    </form>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

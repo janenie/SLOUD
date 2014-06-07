@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="{{url_for('static', filename='jquery.js')}}"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static', filename='app.js')}}"></script>
+  </head>
+  <body class="{% if not session.userid %}nologin{% endif %} {% block pagecls %}{% endblock %}">
+    <div class="top-pan">
+      <div class="container">
+        <div class="brand-outer">
+          <h1 class="brand"><a href="{{url_for('index')}}">sloud</a></h1>
+        </div>
+        {% if session.userid %}
+        <div class="userbox">
+          <img src="http://argo.sysu.edu.cn/avatar/{{session.userid}}">
+            <span>{{session.userid}}</span>
+            <span class="seq">|</span>
+            <a href="{{url_for('index', _anchor='myfiles')}}">我的文件</a>
+            <span class="seq">|</span> <a href="{{url_for('index', _anchor='upload')}}">上传</a>
+            <span class="seq">|</span> <a href="{{url_for('logout')}}">登出</a>
+        </div>
+        {% else %}
+        <div class="loginbox">
+          {% if index %}
+          <p><span class="seq">|</span> 吃葡萄不吐葡萄皮</p>
+          {% endif %}
+          <br>
+          <a class="btn btn-default"
+             href="http://argo.sysu.edu.cn/account/sss?callback={{ (url_for('update_session',_external=True)[7:]) | urlencode }}">
+            使用BBS帐号登录</a>
+        </div>        
+        {% endif %}
+      </div>
+    </div>
+    <div id="main" class="container">
+      {% block context %}{% endblock context %}
+    </div>
+    <div class="footer-pan">
+      @sysu 2014
+    </div>
+  </body>
+</html>

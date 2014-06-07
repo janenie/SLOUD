@@ -1,0 +1,144 @@
+.container{
+    max-width: 700px;
+}
+
+.top-pan{
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.brand{
+    font-family: "jaf-bernino-sans","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+    letter-spacing: 0.14em;
+    font-size: 50px;
+    line-height: 1.1;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.brand a{
+    color: #8ac;
+}    
+
+.brand a:hover{
+    color: #48c;
+    text-decoration: none;
+}
+
+.brand-outer{
+    padding: 50px 50px 0;
+}
+
+.userbox{
+    padding: 25px 50px 20px;
+}
+
+.loginbox{
+    padding: 10px 50px 16px ;
+}    
+
+.index.nologin .top-pan{
+    padding: 180px 0;
+}    
+
+.userbox img{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    box-shadow: 0 -1px 2px 1px #ccc;
+    display: inline-block;
+    margin-right: 5px;
+}
+    
+.seq{
+    margin: auto 7px;
+    display: inline-block;
+    color: #ccc;
+}
+
+.part{
+    margin: 50px 30px 100px;
+}
+
+.radiobox{
+    margin-top: 6px;
+}
+
+.filechooser{
+    display: block;
+    width: 100%;
+    box-shadow: 0 0 2px #ccc;
+    background: #f8f8f8;
+    padding: 90px 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    position: relative;
+    color: #555;
+}
+
+.filechooser-bg{
+    font-size: 72px;
+    margin-bottom: 20px;
+}
+
+.filechooser:hover, .filechooser.active{
+    background: #eee;
+    color: #333;
+}
+
+.filechooser input{
+    opacity: 0;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    cursor: pointer;
+}
+
+.hr-green{
+    margin: 50px 10px ;
+    border-top: 2px solid #9cc67d;
+    box-shadow: 0 1px 4px #e0e0e0;
+    
+}
+
+.myfiles-item{
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.files-title{
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.filechooser-ms{
+    margin-bottom: 10px;
+}
+
+.footer-pan{
+    padding: 50px;
+    border-top: 1px solid #ccc;
+    background: #f0f0f0;
+    color: #ccc;
+    text-align: center;
+}
+
+.prefixinputer{
+    position: relative;
+}
+
+.prefix{
+    position: absolute;
+    color: #999;
+    top: 7px;
+    left: 52px;
+    z-index: 2;
+}
+

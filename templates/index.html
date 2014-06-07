@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block pagecls %}index{% endblock %}
+
+{% block context %}
+{% if session.userid %}
+<div class="part">
+  <hr id="upload" class="hr-green">
+  <form role="form" enctype="multipart/form-data" method="POST"
+        action="{{url_for('ajax_upload')}}" class="controller"
+        data-cls="IndexFileUploader">
+    <div class="form-group">
+      <div class="filechooser">
+        <span class="glyphicon glyphicon-cloud-upload filechooser-bg"></span>
+        <br>
+        <span class="filename">选择要上传的文件</span>
+        <input class="fileuploader" name="file" type="file">
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea placeholder="这个文件的备忘录……" class="form-control" rows="3"
+                name="description"></textarea>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-7">
+          <div class="prefixinputer input-group" data-prefix="/s/{{session.userid}}/">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span>
+            <input class="form-control" placeholder="输入网址..." 
+                   data-prefix="/s/{{session.userid}}/"
+                   name="short" type="input">
+          </div>
+        </div>
+        <div class="col-xs-5 radiobox pull-right">
+          过期时间<span class="seq">：</span>
+          <label class="radio-inline">
+            <input type="radio" name="expi" value="1" checked> 1天
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="expi" value="3"> 3天
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="expi" value="7"> 7天
+          </label>
+        </div>
+      </div>
+    </div>
+    <input class="process btn btn-primary btn-default btn-block" type="submit"
+           value="开始上传！">
+  </form>
+</div>
+<div class="part">
+  <hr id="myfiles" class="hr-green">
+  {% if res %}
+  <ul class="myfiles">
+    {% for r in res %}    
+    <li>
+      <div class="myfiles-item">
+        <div>
+          <a class="files-title" href="{{url_for('show_files', username=session.userid,
+                                       short=r.short)}}">
+            {{ r.description|default('(新文件)', true) }}</a>
+        </div>
+        <div>
+          <span class="seq">|</span>
+          <span class="text-muted">上传时间： {{r.utime}}</span>
+          <span class="seq">|</span>
+          <span class="text-muted">浏览数： {{r.visited}}</span>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p><span class="seq">|</span>目前你没有任何文件</p>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}
+
