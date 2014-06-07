@@ -31,3 +31,5 @@ Just take that thing and copy/paste it as `SESSION_KEY` in `config.py` .
 2. Deploy `server.py` as normal python wsgi web app.
 
 3. Setup the crontab file `tools/clear_expi.sh` to clear the expired. 
+
+@uml copyright
