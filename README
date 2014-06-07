@@ -1,0 +1,33 @@
+Sloud
+======
+
+文件中转站
+
+Features
+--------
+
+  * 用户自定义文件URL
+  * 支持单个文件简单的版本管理
+  * 使用中大BBS第三方认证
+  * 文件过时&自动清除
+
+INSTALL
+=============
+
+0. You need to install these python lib deps : `flask` and `requests`,
+   and update you jinja2 version >= 2.7 .
+
+1. Setup your database. The scheme file is `database/scheme.sql` .
+   And then setup the `DB_*` in `config.py` .
+
+2. Set a new secret key :
+
+    >>> import os
+    >>> os.urandom(24)
+    '\xfd{H\xe5<\x95\xf9\xe3\x96.5\xd1\x01O<!\xd5\xa2\xa0\x9fR"\xa1\xa8'
+
+Just take that thing and copy/paste it as `SESSION_KEY` in `config.py` .
+
+2. Deploy `server.py` as normal python wsgi web app.
+
+3. Setup the crontab file `tools/clear_expi.sh` to clear the expired. 
